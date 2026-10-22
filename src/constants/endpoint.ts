@@ -1,6 +1,6 @@
 export const DEFAULT_API_BASE_URL =
   process.env.EXPO_PUBLIC_API_BASE_URL ||
-  "http://192.168.2.17:8080/Mobile_CuoiKy_Api";
+  "http://10.0.2.2:8082/Mobile_CuoiKy_Api";
 
 export const formatBaseUrl = (url?: string): string => {
   if (!url) return `${DEFAULT_API_BASE_URL.replace(/\/+$/, "")}/api`;

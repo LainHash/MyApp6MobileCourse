@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, TouchableOpacity } from "react-native";
 import { LibraryProvider } from "./src/context/LibraryContext";
 import { AuthProvider, useAuth } from "./src/context/AuthContext";
 import { RootStackParamList, MainTabParamList } from "./src/types/navigation";
@@ -168,7 +168,24 @@ function RootNavigator() {
           <Stack.Screen
             name="Settings"
             component={SettingsScreen}
-            options={{ title: "Cấu Hình Kết Nối API" }}
+            options={({ navigation }) => ({
+              title: "Cấu Hình Kết Nối API",
+              headerLeft: () => (
+                <TouchableOpacity
+                  onPress={() => {
+                    if (navigation.canGoBack()) {
+                      navigation.goBack();
+                    } else {
+                      navigation.navigate("Login");
+                    }
+                  }}
+                  style={{ marginRight: 12, padding: 4 }}
+                  accessibilityLabel="Quay lại"
+                >
+                  <Ionicons name="arrow-back" size={24} color="#FFFFFF" />
+                </TouchableOpacity>
+              ),
+            })}
           />
         </>
       ) : (
